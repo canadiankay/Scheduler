@@ -16,7 +16,6 @@ const DayListItem = function(props) {
 
   const { name, spots, selected, setDay } = props;
 
-  
   // adds classNames based on props
   const dayClass= classNames("day-list__item",
     {"day-list__item--selected": selected,
@@ -33,7 +32,6 @@ const DayListItem = function(props) {
         return `${spots} spots remaining`;
       }
     };
-  
 
   return ( 
   
@@ -41,6 +39,7 @@ const DayListItem = function(props) {
     <li 
       className= {dayClass} 
       onClick={() => setDay(name)}
+      selected={selected}
     >
       <h2 className="text--regular">{name}</h2> 
       <h3 className="text--light">{formatSpots(spots)}</h3>
