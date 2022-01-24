@@ -1,6 +1,6 @@
 /* component that contains all the days -- container responsible for rendering a list of DayListItem components
 -- this component has no state-- all the data it needs is provided by its parent 
--- props are as follows: 
+-- accepts 3 props which are as follows: 
   days: Array (with individual objects for each day 
     {
       id:1, 
@@ -11,6 +11,8 @@
   setDay:Function==> sets the currently selected day and accepts the name of the day
 
 */
+
+
 import React from 'react';
 import DayListItem from 'components/DayListItem.js';
 
