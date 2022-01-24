@@ -17,7 +17,7 @@ export default function Button(props) {
       // if props.confirm is true than we want to access button--confirm
    const buttonClass = classNames("button", 
    {"button--confirm": props.confirm}, 
-   {"button--danger":props.danger}
+   {"button--danger": props.danger}
    );
 
    return (
@@ -29,5 +29,5 @@ export default function Button(props) {
 
       </button>
 
-   )
+   );
 }
