@@ -16,19 +16,20 @@
 import React from 'react';
 import DayListItem from 'components/DayListItem.js';
 
-
-
 const DayList = function(props) {
 
-  // map over days array to return <DayListItem> compoents as children
+  // function that maps over days array to return <DayListItem> compoents as children
   const days = props.days.map((day) => 
     <DayListItem
     key={day.id}
     name={day.name} 
     spots={day.spots} 
-    selected={day.name === props.day}
+    // We have to update value and onChange to reflect the change in App.js
+    // selected={day.name === props.day}
+    selected={day.name === props.value}
     // setDay={props.setDay}
-    setDay={() => props.setDay(props.id)}
+    // setDay={() => props.setDay(props.id)}
+    setDay={() => props.onChange}
     />
   );
 

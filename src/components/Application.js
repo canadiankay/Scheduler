@@ -23,6 +23,7 @@ const days = [
 ];
 
 export default function Application(props) {
+
   // we are storying day state here and not in DayList.js because other components will need it
   const [day, setDay] = useState("Monday");
 
@@ -38,8 +39,12 @@ export default function Application(props) {
       <nav className="sidebar__menu">
       <DayList
         days={days}
-        day={day}
-        setDay={setDay}
+        // day={day}
+        // setDay={setDay}
+        // rename these to mimic onChange and value from HTML attributes
+        value={day}
+        onChange={setDay}
+      
       />
       </nav>
       <img
