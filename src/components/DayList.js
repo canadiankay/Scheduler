@@ -12,18 +12,28 @@
 
 */
 import React from 'react';
+import DayListItem from 'components/DayListItem.js';
+
+
 
 const DayList = function(props) {
 
-  // renders list of day and which is selected
+  // map over days array to return <DayListItem> compoents as children
+  const days = props.days.map((day) => 
+    <DayListItem
+    key={day.id}
+    name={day.name} 
+    spots={day.spots} 
+    selected={day.name === props.day}
+    setDay={props.setDay}
+    />
+  );
 
   return (
-    
-    <div></div>
-
-
+    <ul>
+      {days}
+    </ul>
   );
-  
 }
 
 

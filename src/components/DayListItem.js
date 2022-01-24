@@ -1,20 +1,16 @@
-/* component for ONE specific day
--- each day will display differently depending on what state it's in
---- props:
-  -- name:String ==> each item needs the name of the day
-  -- spots:Number ==> tells us if the day is full (i.e. props.spots === 0) AND how many spots remaining for display purposes (To display the text "{props.spots} spots remaining")
-  -- selected: Boolean ==> true or false depending on whether the day is full or selected
-  -- [can be removed] day: String ==> day list item can figure out if we give selected day as a prop -- will check if props.name and props.day are the same 
-  -- setDay: Function ==> accepts the name of the day and fires event 
-  
+// component for ONE specific day
+// -- each day will display differently depending on what state it's in
+// --- props:
+//   -- name:String ==> each item needs the name of the day
+//   -- spots:Number ==> tells us if the day is full (i.e. props.spots === 0) AND how many spots remaining for display purposes (To display the text "{props.spots} spots remaining")
+//   -- selected: Boolean ==> true or false depending on whether the day is full or selected
+//   -- [can be removed] day: String ==> day list item can figure out if we give selected day as a prop -- will check if props.name and props.day are the same 
+//   -- setDay: Function ==> accepts the name of the day and fires event
 
-*/
-
-*/
 
 import React from 'react';
-import classNames from "classnames";
-import "components/DayListItem.scss";
+import classNames from 'classnames';
+import 'components/DayListItem.scss';
 
 const DayListItem = function(props) {
 
