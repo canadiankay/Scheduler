@@ -9,9 +9,11 @@ import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
+
 import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header.js";
 import Empty from "components/Appointment/Empty.js";
+import Show from "components/Appointment/Show.js";
 
 storiesOf("Button", module)
   .addParameters({
@@ -194,6 +196,14 @@ storiesOf("Appointment", module)
   .add("Empty", () => (
     <Empty
     onAdd={action("onAdd")}
+    />
+  ))
+
+  //testing the Appointment- Show component
+  .add("Show", () => (
+    <Show
+    onEdit={action("onEdit")}
+    onDelete={action("onDelete")}
     />
   ))
 
