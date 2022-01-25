@@ -1,6 +1,6 @@
 import React from "react";
 
-
+// allows user to choose a time slot to book an appointment
 const Empty = function (props) {
 
   return (

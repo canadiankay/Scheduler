@@ -1,6 +1,6 @@
 import React from "react";
 
-
+// This icomponent displays the time of the appointment and a separator line
 const Header = function (props) {
 
   return (

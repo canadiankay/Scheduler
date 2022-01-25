@@ -6,7 +6,12 @@ const Appointment = function (props) {
 
   return (
 
-    <h1>THIS IS THE APPOINTMENT COMPONENT</h1>
+    <article className="Appointment">
+
+      {props.time}
+
+
+    </article>
 
 
   );

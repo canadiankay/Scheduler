@@ -1,9 +1,8 @@
 import React from "react";
 
-// once we book an interview, we want to show it to users that
-// when show view is visible, user can hover over it revealing edit + delete buttons
 
 
+// displays existing appointment + user can hover over it revealing edit + delete buttons
 const Show = function (props) {
 
   return (

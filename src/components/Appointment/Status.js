@@ -1,7 +1,7 @@
-// saving and deleting appts is async, but we need user to see that something is happening so this displays a message using CSS
+
 import React from "react";
 
-
+// since saving and deleting appts is async, we need to inform user  that something is happening (displays message)
 const Status = function (props) {
 
   return (

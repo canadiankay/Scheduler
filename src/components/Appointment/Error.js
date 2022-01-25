@@ -1,7 +1,7 @@
-// when things fail, we want to show user a message that there's an error AND we have a close button at the top that allows them to close it
 import React from "react";
 
 
+// when things fail, we want to show user a message that there's an error AND we have a close button at the top that allows them to close it
 const Error = function (props) {
 
   return (
