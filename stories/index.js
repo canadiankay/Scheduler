@@ -11,6 +11,7 @@ import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header.js";
+import Empty from "components/Appointment/Empty.js";
 
 storiesOf("Button", module)
   .addParameters({
@@ -186,6 +187,13 @@ storiesOf("Appointment", module)
   .add("Header", () => (
     <Header
       time="12pm"
+    />
+  ))
+
+  //testing the Appointment- Empty component
+  .add("Empty", () => (
+    <Empty
+    onAdd={action("onAdd")}
     />
   ))
 
