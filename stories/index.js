@@ -9,6 +9,8 @@ import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
+import Appointment from "components/Appointment/index.js";
+import Header from "components/Appointment/Header.js";
 
 storiesOf("Button", module)
   .addParameters({
@@ -164,3 +166,28 @@ storiesOf("InterviewerList", module)
       onChange={() => action("setInterviewer")}
     />
   ));
+
+
+// stories for testing the Appointment component
+storiesOf("Appointment", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Appointment", () => (
+    <Appointment/>
+  ))
+
+  .add("Appointment with Time", () => (
+  <Appointment 
+    time="12pm"
+    />
+  ))
+  // stories for testing the Appointment- Header component since its a child of Appointment
+  .add("Header", () => (
+    <Header
+      time="12pm"
+    />
+  ))
+
+
+
