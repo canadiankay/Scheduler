@@ -17,6 +17,7 @@ import Show from "components/Appointment/Show.js";
 import Confirm from "components/Appointment/Confirm.js";
 import Status from "components/Appointment/Status.js";
 import Error from "components/Appointment/Error.js";
+import Form from "components/Appointment/Form.js";
 
 storiesOf("Button", module)
   .addParameters({
@@ -230,6 +231,27 @@ storiesOf("Appointment", module)
     <Error
     message= "Could not delete appointment"
     onClose={action("onClose")}
+    />
+  ))
+
+  //testing the Appointment- Form Edit component
+  .add("Edit", () => (
+    <Form
+    // when a person is editing an appointment, student name and interviewer needs to be pre-filled with existing data 
+      name="caNADIAn"
+      interviewer={4}
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />
+  ))
+
+  //testing the Appointment- Form Create component
+  .add("Create", () => (
+    <Form
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
     />
   ))
 
