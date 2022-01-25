@@ -25,7 +25,7 @@ import classNames from 'classnames';
 
 const InterviewerListItem = function (props) {
 
-  const { name, avatar, selected, setInterviewer } = props;
+  const { id, name, avatar, selected, setInterviewer } = props;
 
   // add classnames based on props
   const interviewerClass= classNames("interviewers__item",
