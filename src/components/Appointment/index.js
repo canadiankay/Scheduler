@@ -6,13 +6,14 @@ import Show from "./Show";
 
 //Appointment component HERE -
 const Appointment = function (props) {
+  const {time, interview } = props;
 
   return (
 
     <article className="Appointment">
 
-      <Header time={props.time} />
-      {props.interview ? <Show interview={props.interview} /> : <Empty />}
+      <Header time={time} />
+      {interview ? <Show student={interview.student} interviewer={interview.interviewer} /> : <Empty />}
 
 
 
