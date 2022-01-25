@@ -238,7 +238,7 @@ storiesOf("Appointment", module)
   .add("Edit", () => (
     <Form
     // when a person is editing an appointment, student name and interviewer needs to be pre-filled with existing data 
-      name="caNADIAn"
+      studentName="caNADIAn"
       interviewer={4}
       interviewers={interviewers}
       onSave={action("onSave")}
