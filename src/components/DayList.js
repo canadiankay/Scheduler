@@ -29,7 +29,7 @@ const DayList = function(props) {
     selected={day.name === props.value}
     // setDay={props.setDay}
     // setDay={() => props.setDay(props.id)}
-    setDay={() => props.onChange}
+    setDay={props.onChange}
     />
   );
 
