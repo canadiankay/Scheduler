@@ -22,7 +22,7 @@ export default function Application(props) {
 
   //updates the state with the new day 
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({ ...prev, days }));
+  
 
   // spread operator to create a new object with all of the existing keys of state then new declared keys will overwrite existing keys
   setState({ ...state, day: "Tuesday" });
@@ -31,13 +31,28 @@ export default function Application(props) {
 
   // effect to make a GET request to update the days state with response---- renders data for the days (sidebar)
   useEffect(() => {
-    axios.get("/api/days")
-    .then(response => {
-      setDays(() => response.data ); 
-      console.log("this is the response:", response.data)
-    });
-  }, []);
-  // ^returning an empty arrays stops browser from constnatly making the request; only makes it when days is updated/changed
+    Promise.all([
+      Promise.resolve(axios.get('http://localhost:8001/api/days')),
+      Promise.resolve(axios.get('http://localhost:8001/api/appointments')),
+      // Promise.resolve(axios.get('http://localhost:8001/api/interviewers'))
+    ])
+    . then((all) => {
+      setState(prev => (
+        {
+          ...prev, 
+          days: all[0].data,
+          appointments: all[1].data
+        }
+      ))
+    })
+    .catch (err => console.log("This is the error:", err));
+
+    }, []);
+    // ^returning an empty arrays stops browser from constnatly making the request; only makes it when days is updated/changed
+
+    
+
+
 
 
   //function that reiteraties ovre appointments array, passing down props

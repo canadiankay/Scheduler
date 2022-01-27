@@ -1,5 +1,5 @@
   // function that will return an Array of appointments for the given day 
- export const getAppointmentsForDay = function(state, day) {
+ export default function getAppointmentsForDay(state, day) {
     //start by finding the object in our state.days array who's name matches the provided day.  
     const appointmentsArray = state.days.filter(singleDay => {
       return singleDay.name === day;
