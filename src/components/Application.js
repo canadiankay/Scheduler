@@ -5,25 +5,6 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 
-// we will eventually retrieve this data from an API but for now they are mock data
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
-
 
 // list of hardcoded appointments- will use API later
 const appointments = [
@@ -66,9 +47,18 @@ const appointments = [
 ];
 
 export default function Application(props) {
+  const [day, setDay] = useState('Monday');
+  const [days, setDays] = useState([]);
 
-  // we are storying day state here and not in DayList.js because other components will need it
-  const [day, setDay] = useState("Monday");
+  // effect to make a GET request to update the days state with response---- // days will be retrieved from API
+  useEffect(() => {
+    axios.get("/api/days").then(response => {
+      setDays(() => response.data );
+    });
+
+  }, []);
+  // ^returning an empty arrays stops browser from constnatly making the request; only makes it when days is updated/changed
+
 
   //function that reiteraties ovre appointments array, passing down props
   const schedule = appointments.map((appointment) => {
@@ -97,9 +87,6 @@ export default function Application(props) {
       <nav className="sidebar__menu">
       <DayList
         days={days}
-        // day={day}
-        // setDay={setDay}
-        // rename these to mimic onChange and value from HTML attributes
         value={day}
         onChange={setDay}
       
