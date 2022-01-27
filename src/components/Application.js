@@ -18,7 +18,7 @@ export default function Application(props) {
   });
 
   //list of appointments for that day
-  const dailyAppointments = [];
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   //updates the state with the new day 
   const setDay = day => setState({ ...state, day });
@@ -50,17 +50,13 @@ export default function Application(props) {
     }, []);
     // ^returning an empty arrays stops browser from constnatly making the request; only makes it when days is updated/changed
 
-    
-
-
-
-
   //function that reiteraties ovre appointments array, passing down props
   const schedule = dailyAppointments.map((appointment) => {
     return (
       <Appointment
         key={appointment.id}
-        {...appointment}
+        id={appointment.id}
+        time={appointment.time}
       />
     );
   });
