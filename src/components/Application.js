@@ -47,15 +47,32 @@ const appointments = [
 ];
 
 export default function Application(props) {
-  const [day, setDay] = useState('Monday');
-  const [days, setDays] = useState([]);
 
-  // effect to make a GET request to update the days state with response---- // days will be retrieved from API
+  //instead of using multiple UseStates we can combine them into a state object
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    // appointments: {}
+  });
+
+
+  //updates the state with the new day 
+  const setDay = day => setState({ ...state, day });
+  const setDays = days => setState(prev => ({ ...prev, days }));
+
+  const state = { day: "Monday", days: [] };
+  // spread operator to create a new object with all of the existing keys of state then new declared keys will overwrite existing keys
+  setState({ ...state, day: "Tuesday" });
+  //^creates a new object with the existing days array and a new value for the day.
+
+
+  // effect to make a GET request to update the days state with response---- renders data for the days (sidebar)
   useEffect(() => {
-    axios.get("/api/days").then(response => {
-      setDays(() => response.data );
+    axios.get("/api/days")
+    .then(response => {
+      setDays(() => response.data ); 
+      console.log("this is the response:", response.data)
     });
-
   }, []);
   // ^returning an empty arrays stops browser from constnatly making the request; only makes it when days is updated/changed
 
@@ -65,10 +82,6 @@ export default function Application(props) {
     return (
       <Appointment
         key={appointment.id}
-        // id={appointment.id} 
-        // time={appointment.time} 
-        // interview={appointment.interview}
-        // ^since the above object keys match prop names we can spread the object 
         {...appointment}
       />
     );
@@ -86,9 +99,9 @@ export default function Application(props) {
       <hr className="sidebar__separator sidebar--centered" />
       <nav className="sidebar__menu">
       <DayList
-        days={days}
-        value={day}
-        onChange={setDay}
+        days={state.days}
+        day={state.day}
+        setDay={setDay}
       
       />
       </nav>
