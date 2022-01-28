@@ -23,30 +23,34 @@
 
   };
 
-// function that will return an object containg interviewers for the day 
-export function getInterviewersForDay(state, day) {
-
-  return [];
-
-
-
-};
-
-
-// function that will return an object containing interview data 
-export function getInterview(state, interview) {
-  const { interviewers } = state;
-
-  if (interview) {
-    const interviewer = interviewers[interview.interviewer];
-    return { 
-      "student": interview.student,
-      "interviewer": interviewer
-    };
+  
+  
+  
+  // function that will return an object containing interview data 
+  export function getInterview(state, interview) {
+    const { interviewers } = state;
     
-  } else {
-    return null;
-  }
-
-};
-
+    if (interview) {
+      const interviewer = interviewers[interview.interviewer];
+      return { 
+        "student": interview.student,
+        "interviewer": interviewer
+      };
+      
+    } else {
+      return null;
+    }
+    
+  };
+  
+  // function that will return an object containg interviewers for the day 
+  export function getInterviewersForDay(state, day) {
+    const { days, interviewers } = state;
+  
+    const filteredInterviewers= days.find(item => item.name === day);
+    if (days.length < 1 || !filteredInterviewers) {
+      return [];
+    } else {
+      return filteredInterviewers.interviewers.map((id) => interviewers[id])
+    }
+  };
