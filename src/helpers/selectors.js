@@ -28,15 +28,18 @@
 export function getInterview(state, interview) {
   const { interviewers } = state;
 
-  if (!interview) {
+  if (interview) {
+    const interviewer = interviewers[interview.interviewer];
+    return { 
+      "student": interview.student,
+      "interviewer": interviewer
+    };
+    
+  } else {
     return null;
   }
-  const interviewer = interviewers[interview.interviewer];
- 
-  return { 
-    "student": interview.student,
-    "interviewer": interviewer
-  };
+
+
 
 };
 
