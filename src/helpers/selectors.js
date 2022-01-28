@@ -23,6 +23,15 @@
 
   };
 
+// function that will return an object containg interviewers for the day 
+export function getInterviewersForDay(state, day) {
+
+  return [];
+
+
+
+};
+
 
 // function that will return an object containing interview data 
 export function getInterview(state, interview) {
@@ -38,8 +47,6 @@ export function getInterview(state, interview) {
   } else {
     return null;
   }
-
-
 
 };
 
