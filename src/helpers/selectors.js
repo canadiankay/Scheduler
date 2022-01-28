@@ -1,5 +1,5 @@
   // function that will return an Array of appointments for the given day 
- const getAppointmentsForDay = function(state, day) {
+ export function getAppointmentsForDay(state, day) {
     //start by finding the object in our state.days array who's name matches the provided day.  
     const appointmentsArray = state.days.filter(singleDay => {
       return singleDay.name === day;
@@ -25,7 +25,7 @@
 
 
 // function that will return an object containing interview data 
- const getInterview = function(state, interview) {
+export function getInterview(state, interview) {
   const { interviewers } = state;
 
   if (!interview) {
@@ -40,4 +40,3 @@
 
 };
 
-export default {getAppointmentsForDay,getInterview};
