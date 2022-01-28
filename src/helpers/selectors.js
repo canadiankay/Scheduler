@@ -1,5 +1,5 @@
   // function that will return an Array of appointments for the given day 
- export function getAppointmentsForDay(state, day) {
+ const getAppointmentsForDay = function(state, day) {
     //start by finding the object in our state.days array who's name matches the provided day.  
     const appointmentsArray = state.days.filter(singleDay => {
       return singleDay.name === day;
@@ -13,9 +13,9 @@
     //appointments array for given day 
     const apptsArray = appointmentsArray[0].appointments
     // iterate trhough appointments array for given day, find the correspeonding appointments (state.appointments)
-    const appointsmentsPerDay = apptsArray.map((id) => {
+    const appointsmentsPerDay = apptsArray.map((appointment) => {
       //using the appointments array, find the correspeonding appointments (state.appointments) (id = each appointment)
-      return state.appointments[id];
+      return state.appointments[appointment];
     })
 
     // return array of the appointments     
@@ -25,18 +25,19 @@
 
 
 // function that will return an object containing interview data 
- export function getInterview(state, interview) {
-   
+ const getInterview = function(state, interview) {
+  const { interviewers } = state;
+
   if (!interview) {
     return null;
   }
-
+  const interviewer = interviewers[interview.interviewer];
  
-  if (interview) {
-    const interviewer = state.interviewers[interview.interviewer];
-      return { 
-        "student": interview.student,
-        "interviewer": interviewer
-      };
-    }
+  return { 
+    "student": interview.student,
+    "interviewer": interviewer
   };
+
+};
+
+export default {getAppointmentsForDay,getInterview};

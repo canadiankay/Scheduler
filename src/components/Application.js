@@ -15,6 +15,7 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: {},
+    interviewers: {}
   });
 
 
@@ -29,9 +30,9 @@ export default function Application(props) {
   // effect to make a GET request to update the days state with response---- renders data for the days (sidebar)
   useEffect(() => {
     Promise.all([
-      Promise.resolve(axios.get('http://localhost:8001/api/days')),
-      Promise.resolve(axios.get('http://localhost:8001/api/appointments')),
-      Promise.resolve(axios.get('http://localhost:8001/api/interviewers'))
+      Promise.resolve(axios.get('/api/days')),
+      Promise.resolve(axios.get('/api/appointments')),
+      Promise.resolve(axios.get('/api/interviewers'))
     ])
     . then((all) => {
       setState(prev => (
@@ -41,7 +42,7 @@ export default function Application(props) {
           appointments: all[1].data,
           interviewers: all[2].data
         }
-        ))
+      ))
       })
       .catch (err => console.log("This is the error:", err));
       
@@ -60,7 +61,7 @@ export default function Application(props) {
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
-        interview={appointment.interview}
+        interview={interview}
       />
     );
   });
