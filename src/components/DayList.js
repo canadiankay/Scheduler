@@ -25,11 +25,11 @@ const DayList = function(props) {
     name={day.name} 
     spots={day.spots} 
     // We have to update value and onChange to reflect the change in App.js
-    // selected={day.name === props.day}
-    selected={day.name === props.value}
+    selected={day.name === props.day}
+    // selected={day.name === props.value}
     // setDay={props.setDay}
     // setDay={() => props.setDay(props.id)}
-    setDay={props.onChange}
+    setDay={props.setDay}
     />
   );
 
