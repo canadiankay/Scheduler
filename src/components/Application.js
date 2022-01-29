@@ -36,6 +36,7 @@ export default function Application(props) {
       time={appointment.time}
       interview={interview}
       interviewers={interviewers}
+      bookInterview={bookInterview}
       />
       );
     });
@@ -62,6 +63,26 @@ export default function Application(props) {
         
       }, []);
       // ^returning an empty arrays stops browser from constnatly making the request; only makes it when days is updated/changed
+
+
+      function bookInterview(id, interview) {
+        console.log(id, interview);
+  
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interview }
+        };
+    
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
+  
+        return axios.put(`api/appointments/${id}`, appointment)
+        .then( () => setState({ ...state, appointments }))
+        .catch((err) => console.log("This is an error:", err));
+  
+        };
       
   return (
     <main className="layout">
