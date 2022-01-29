@@ -19,7 +19,7 @@ export default function Application(props) {
   });
 
   //updates the state with the new day 
-  const setDay = day => setState({ ...state, day });
+  const setDay = day => setState(prev => ({ ...prev, day }));
 
   //list of appointments and interviewers for that day
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -37,6 +37,7 @@ export default function Application(props) {
       interview={interview}
       interviewers={interviewers}
       bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
       />
       );
     });
@@ -64,7 +65,7 @@ export default function Application(props) {
       }, []);
       // ^returning an empty arrays stops browser from constnatly making the request; only makes it when days is updated/changed
 
-
+      // function taht allows us to create (and save) an interview appt 
       function bookInterview(id, interview) {
         console.log(id, interview);
   
@@ -82,7 +83,31 @@ export default function Application(props) {
         .then( () => setState({ ...state, appointments }))
         .catch((err) => console.log("This is an error:", err));
   
+      };
+
+      // function that allows us to cancel/delete an interview appt
+      function cancelInterview(id) {
+        const appointment = {
+          ...state.appointments[id],
+          interview: null
         };
+    
+        const appointments = {
+          ...state.appointments[id],
+          [id]: appointment
+        };
+    
+        return axios.delete(`api/appointments/${id}`, appointment)
+        .then( () => setState( ...state, appointments ))
+        .catch( (error) => console.log("This is an error:", error) );
+        
+
+
+
+
+
+      };
+
       
   return (
     <main className="layout">
