@@ -7,6 +7,7 @@ import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import useVisualMode from "../../hooks/useVisualMode";
+import Error from "./Error";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -15,6 +16,8 @@ const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 
 
@@ -38,15 +41,16 @@ const Appointment = function (props) {
     .then(() => {
       transition(SHOW)
     })
-    .catch((err) => console.log("This is an error", err))
+    .catch( (error) => transition(ERROR_SAVE, true) );
   };
 
   //delete appt 
   function deleteAppointment() {
     transition(DELETING);
     //this sends the request to the database to delete then takes user to empty when request is successful
-    cancelInterview(id).then(() => transition(EMPTY))
-    .catch((err) => console.log("This is an error:", err));
+    cancelInterview(id)
+    .then(() => transition(EMPTY))
+    .catch( (error) => transition(ERROR_DELETE, true) );
   }
 
 
@@ -103,11 +107,28 @@ const Appointment = function (props) {
         bookInterview={bookInterview}
         onCancel={() => transition(SHOW)}
         onSave={save}
-      
-      
       />
-
     )}
+
+    {/* This is the error handling modes */}
+
+    {mode === ERROR_SAVE && (
+        <Error
+          message="Your request to save this could not be completed. Please try again!"
+          onClose={() => back()}
+        />
+      )}
+
+      {mode === ERROR_DELETE && (
+        <Error
+          message="Your request to delete this could not be completed. Please try again!"
+          onClose={() => back()}
+        />
+      )}
+
+
+
+
     </article>
   );
 }
