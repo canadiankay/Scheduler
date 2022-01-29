@@ -80,7 +80,9 @@ export default function Application(props) {
         };
   
         return axios.put(`api/appointments/${id}`, appointment)
-        .then( () => setState({ ...state, appointments }))
+        .then( () => {
+          setState(prev => ({ ...prev, appointments }))
+        })
         .catch((err) => console.log("This is an error:", err));
   
       };
