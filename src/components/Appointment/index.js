@@ -13,7 +13,8 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
-const CONFIRM = "CONFIRM"
+const CONFIRM = "CONFIRM";
+const EDIT = "EDIT";
 
 
 
@@ -44,7 +45,8 @@ const Appointment = function (props) {
   function deleteAppointment() {
     transition(DELETING);
     //this sends the request to the database to delete then takes user to empty when request is successful
-    cancelInterview(id).then(() => transition(EMPTY)) 
+    cancelInterview(id).then(() => transition(EMPTY))
+    .catch((err) => console.log("This is an error:", err));
   }
 
 
@@ -63,9 +65,11 @@ const Appointment = function (props) {
 
       {mode === SHOW && (
         <Show
+          id={id}
           student={interview.student}
           interviewer={interview.interviewer}
           onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
           
         />
     )}
@@ -91,6 +95,19 @@ const Appointment = function (props) {
       />
     )}
     
+    {mode === EDIT && (
+      <Form 
+        student={interview.student}
+        interviewer={interview.interviewer}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
+        onCancel={() => transition(SHOW)}
+        onSave={save}
+      
+      
+      />
+
+    )}
     </article>
   );
 }
