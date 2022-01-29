@@ -81,7 +81,6 @@ const Appointment = function (props) {
     {mode === CREATE && (
       <Form
         interviewers={interviewers}
-        bookInterview={bookInterview}
         onSave={save}
         onCancel={() => back()}
       />
@@ -104,7 +103,6 @@ const Appointment = function (props) {
         student={interview.student}
         interviewer={interview.interviewer}
         interviewers={interviewers}
-        bookInterview={bookInterview}
         onCancel={() => transition(SHOW)}
         onSave={save}
       />
