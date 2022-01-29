@@ -25,13 +25,12 @@ export default function Application(props) {
   
   //function that reiteraties ovre appointments array, passing down props
   const schedule = dailyAppointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interiew);
     return (
       <Appointment
       key={appointment.id}
       id={appointment.id}
       time={appointment.time}
-      interview={interview}
+      interview={getInterview(state, appointment.interiew)}
       interviewers={interviewers}
       bookInterview={bookInterview}
       cancelInterview={cancelInterview}

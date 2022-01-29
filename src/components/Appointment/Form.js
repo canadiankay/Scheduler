@@ -26,7 +26,7 @@ const Form = function (props) {
   };
 
     const save = () => {
-    onSave(student, interviewer);
+    props.onSave(props.student, interviewer);
   }
 
   return (
