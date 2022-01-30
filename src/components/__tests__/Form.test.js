@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, getByAltText, fireEvent } from "@testing-library/react";
 
 import Form from "components/Appointment/Form";
 
@@ -44,7 +44,7 @@ describe("Form", () => {
     );
 
     /* 3. Click the save button */
-    fireEvent.onclick(getByText("Save"));
+    fireEvent.click(getByText("Save"));
 
     /* A) validation is shown */
     expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
@@ -61,6 +61,8 @@ describe("Form", () => {
       const { getByText, queryByText, getByAltText } = render(
         <Form interviewers={interviewers} onSave={onSave} student="Lydia Miller-Jones" />
       );
+
+      fireEvent.click(getByAltText("Sylvia Palmer"));
       
       /* 3. Click the save button */
       fireEvent.click(getByText("Save"));
@@ -70,7 +72,7 @@ describe("Form", () => {
     /* D) onSave is called once*/
     expect(onSave).toHaveBeenCalledTimes(1);
     /* E) onSave is called with the correct arguments */
-    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
   });
 
 
