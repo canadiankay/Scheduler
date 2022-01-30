@@ -67,7 +67,7 @@ const Form = function (props) {
         {/* interviewer list array that shows all the interviewers */}
         <InterviewerList 
           interviewers={props.interviewers}
-          value= {interviewer}
+          value= {interviewer ? interviewer.id : null}
           onChange={setInterviewer}
         />
       </section>
