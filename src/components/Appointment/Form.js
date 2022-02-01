@@ -5,11 +5,12 @@ import InterviewerList from "components/InterviewerList.js";
 
 // user input their info, saves it and edits it
 /* 
--- has two visual states: 1) if user is creating a new appt 2) editing an exisitng appt 
+-- has two visual states: 
+1) if user is creating a new appt 2) editing an exisitng appt 
 -- the name and interviewer id needs to be updated as per user so we need to use state
 
 */
-const Form = function (props) {
+export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -26,6 +27,7 @@ const Form = function (props) {
     props.onCancel();
   };
 
+  //function to validate form -- both student and interview must be selected or else we get an error
   function validate() {
     // check if user has entered a name
     if (student === "") {
@@ -38,36 +40,35 @@ const Form = function (props) {
       setError("Please select an interviewer before proceeding");
       return;
     }
-    setError("null");
+    setError("");
     props.onSave(student, interviewer);
   }
 
-  //function to validate form -- both student and interview must be selected or else we get an error
 
   return (
     <main className="appointment__card appointment__card--create">
 
-      {/* THIS IS THE PART THAT CREATES AN EXISTING APPT */}
-      <section className="appointment__card-left">
-        <form onSubmit={event => event.preventDefault()} autoComplete="off">
-          <input
-            className="appointment__create-input text--semi-bold"
-            name="name"
-            type="text"
-            placeholder="Enter Student Name"
-            /* This must be a controlled component */
-            value={student}
-            onChange={(event) =>setStudent(event.target.value)}
-            data-testid="student-name-input"
+    {/* THIS IS THE PART THAT CREATES AN EXISTING APPT */}
+    <section className="appointment__card-left">
+      <form onSubmit={event => event.preventDefault()} autoComplete="off">
+        <input
+          className="appointment__create-input text--semi-bold"
+          student="student"
+          type="text"
+          placeholder="Enter Student Name"
+          value={student}
+          onChange={e =>setStudent(e.target.value)}
+          data-testid="student-name-input"
 
-          />
-        </form>
+        />
+      </form>
 
         <section className="appointment__validation">{error}</section>
+
         {/* interviewer list array that shows all the interviewers */}
         <InterviewerList 
           interviewers={props.interviewers}
-          value= {interviewer ? interviewer.id : null}
+          value= {interviewer}
           onChange={setInterviewer}
         />
       </section>
@@ -81,7 +82,6 @@ const Form = function (props) {
         </section>
       </section>
     </main>
-  )
+  );
 }
 
-export default Form;

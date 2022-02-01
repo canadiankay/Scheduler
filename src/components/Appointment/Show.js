@@ -1,15 +1,12 @@
 import React from "react";
 
-
-
 // displays existing appointment + user can hover over it revealing edit + delete buttons
-const Show = function (props) {
+export default function  Show(props) {
 
   const { student, interviewer, onEdit, onDelete } = props;
 
   return (
-
-  <main className="appointment__card appointment__card--show">
+    <main className="appointment__card appointment__card--show">
     <section className="appointment__card-left">
       <h2 className="text--regular">{student}</h2>
       <section className="interviewer">
@@ -17,6 +14,7 @@ const Show = function (props) {
         <h3 className="text--regular">{interviewer.name}</h3>
       </section>
     </section>
+
     <section className="appointment__card-right">
       <section className="appointment__actions">
         <img
@@ -25,18 +23,17 @@ const Show = function (props) {
           alt="Edit"
           onClick={onEdit}
         />
+
         <img
           className="appointment__actions-button"
           src="images/trash.png"
           alt="Delete"
           onClick={onDelete}
         />
+
       </section>
     </section>
-  </main>
-
-
+    </main>
   );
 }
 
-export default Show;

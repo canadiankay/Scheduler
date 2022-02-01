@@ -6,8 +6,6 @@ import Appointment from "components/Appointment";
 import {getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
-
-
 export default function Application(props) {
 
   const { 
@@ -19,25 +17,22 @@ export default function Application(props) {
   } = useApplicationData();
 
   //list of appointments and interviewers for that day
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
-  
-  
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
   //function that reiteraties ovre appointments array, passing down props
-  const schedule = dailyAppointments.map((appointment) => {
+  const appointmentSchedule = dailyAppointments.map((appointment) => {
     return (
       <Appointment
-      key={appointment.id}
-      id={appointment.id}
-      time={appointment.time}
-      interview={getInterview(state, appointment.interiew)}
-      interviewers={interviewers}
-      bookInterview={bookInterview}
-      cancelInterview={cancelInterview}
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={getInterview(state, appointment.interiew)}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
-      );
-    });
-
+    )
+  });
       
   return (
     <main className="layout">
@@ -61,12 +56,11 @@ export default function Application(props) {
         src="images/lhl.png"
         alt="Lighthouse Labs"
       />
-        
       </section>
 
       {/* The schedule-- a list of all of our appointment components */}
       <section className="schedule">
-        {schedule}
+        {appointmentSchedule}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
