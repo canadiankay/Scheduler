@@ -2,9 +2,7 @@
 
 This single-page web app built using React allows a user to create, edit and delete interview appointments.
 
-This app uses Express and two servers which run at the same time whereby requests are proxied between the two:
-* **Scheduler API** which can be found here: https://github.com/canadiankay/scheduler-api
-* the Webpack development server to this API server.
+The Scheduler client application created using Create React App. Express is the basis for the Scheduler API server application. Both servers run concurrently; requests are proxied from the Webpack development server to the API server. **Scheduler API** which can be found here: https://github.com/canadiankay/scheduler-api
 
 This app has undergone testing using Storybook, Jest and Cypress.
 
@@ -40,11 +38,16 @@ npm test
 npm run storybook
 
 ## Dependencies
-* axios
+* Axios
 * classnames
 * normalize.css
-* react 
-
+* React 
+* Webpack
+* Babel
+* Storybook 
+* Webpack Dev Server
+* Jest 
+* Testing Library
 
 
 
