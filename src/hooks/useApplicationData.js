@@ -55,7 +55,7 @@ const useApplicationData = function() {
     // function taht allows us to create (and save) an interview appt 
     function bookInterview(id, interview) {
       const add = !state.appointments[id].interview;
-      console.log(id, interview);
+      // console.log(id, interview);
   
       const appointment = {
         ...state.appointments[id],
@@ -66,6 +66,7 @@ const useApplicationData = function() {
         ...state.appointments,
         [id]: appointment
       };
+      // console.log({appointment, appointments});
   
       return (axios.put(`api/appointments/${id}`, appointment)
       .then( () => setState({ ...state, appointments, days: updateSpots(add) }))
@@ -81,7 +82,7 @@ const useApplicationData = function() {
       };
     
       const appointments = {
-        ...state.appointments[id],
+        ...state.appointments,
          [id]: appointment
       };
     

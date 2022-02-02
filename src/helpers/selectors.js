@@ -29,7 +29,6 @@
   // function that will return an object containing interview data 
   export function getInterview(state, interview) {
     const { interviewers } = state;
-    
     if (interview) {
       const interviewer = interviewers[interview.interviewer];
       return { 

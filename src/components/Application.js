@@ -19,14 +19,17 @@ export default function Application(props) {
   //list of appointments and interviewers for that day
   const interviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  console.log("DailyAppts:", dailyAppointments)
   //function that reiteraties ovre appointments array, passing down props
   const appointmentSchedule = dailyAppointments.map((appointment) => {
+    if (!appointment) return null;
     return (
       <Appointment
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
-        interview={getInterview(state, appointment.interiew)}
+        interview={getInterview(state, appointment.interview)}
         interviewers={interviewers}
         bookInterview={bookInterview}
         cancelInterview={cancelInterview}
