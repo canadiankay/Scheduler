@@ -9,18 +9,18 @@ This app uses Express and two servers which run at the same time whereby request
 This app has undergone testing using Storybook, Jest and Cypress.
 
 ### The Finished Product
-![Home page]()
+![Home page](docs/HomeScreen.png)
 
-![A run through the entire application]()
+![A run through the entire application](docs/schedulerApp-runThrough.gif)
 
 
 #### Error Handling Messages
 
-![If name is blank]()
+![If name is blank](docs/EnterName-ErrorMessage.png)
 
-![If interviewer not chosen]()
+![If interviewer not chosen](docs/SelectInterviewer-ErrorMessage.png)
 
-![If a user wants to delete a message a confirmation message will pop up]()
+![If a user wants to delete a message a confirmation message will pop up](docs/DeleteAppt-WarningMesasge.png)
 
 ## Setup
 
