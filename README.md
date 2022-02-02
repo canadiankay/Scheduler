@@ -9,18 +9,18 @@ This app uses Express and two servers which run at the same time whereby request
 This app has undergone testing using Storybook, Jest and Cypress.
 
 ### The Finished Product
-![Home page](docs/HomeScreen.png)
+![Home page](https://raw.githubusercontent.com/canadiankay/Scheduler/master/docs/HomeScreen.png)
 
-![A run through the entire application](docs/schedulerApp-runThrough.gif)
+![A run through the entire application](https://raw.githubusercontent.com/canadiankay/Scheduler/master/docs/schedulerApp-runThrough.gif)
 
 
 #### Error Handling Messages
 
-![If name is blank](docs/EnterName-ErrorMessage.png)
+![If name is blank](https://raw.githubusercontent.com/canadiankay/Scheduler/master/docs/EnterName-ErrorMessage.png)
 
-![If interviewer not chosen](docs/SelectInterviewer-ErrorMessage.png)
+![If interviewer not chosen](https://raw.githubusercontent.com/canadiankay/Scheduler/master/docs/SelectInterviewer-ErrorMessage.png)
 
-![If a user wants to delete a message a confirmation message will pop up](docs/DeleteAppt-WarningMesasge.png)
+![If a user wants to delete a message a confirmation message will pop up](https://raw.githubusercontent.com/canadiankay/Scheduler/master/docs/DeleteAppt-WarningMesasge.png)
 
 ## Setup
 
