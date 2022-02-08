@@ -1,5 +1,5 @@
 //main Appointment component
-import React from "react";
+import React, {useEffect} from "react";
 import "./styles.scss";
 import useVisualMode from "hooks/useVisualMode";
 
@@ -22,29 +22,33 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
-  console.log("these are props:", props)
+  // console.log("these are props:", props)
   
   const {mode, transition, back} = useVisualMode (
     props.interview ? SHOW : EMPTY
   );
+
+  useEffect(() => {
+    if (!props.interview && mode === SHOW) {
+      transition(EMPTY);
+    }
+    if (props.interview && mode === EMPTY) {
+      transition(SHOW);
+    }
+  }, [props.interview, transition, mode])
   
     
   function save(student, interviewer) {
     transition (SAVING);
+    
     const interview = {
       student,
       interviewer
     };
     props.bookInterview(props.id, interview)
-    .then(() => {
-      // props.getInterview(, interview)
-      console.log("this is interview:", interview);
-      transition(SHOW)
-
-    }) 
-    .catch((error) => transition(ERROR_SAVE, true) );
-    // console.log(props.id);
-  }
+    .then(() => transition(SHOW)) 
+    .catch((error) => transition(ERROR_SAVE, true));
+  };
 
   //delete appt 
   function deleteAppointment() {
@@ -57,8 +61,8 @@ export default function Appointment(props) {
 
   return (
     <article className="Appointment">
-
       <Header time={props.time} />
+
       {/* Conditions to support the various modes/views */}
 
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
@@ -76,7 +80,7 @@ export default function Appointment(props) {
         <Form
           interviewers={props.interviewers}
           onSave={save}
-          onCancel={() => back()}
+          onCancel={()=> back()}
         />
       )}
 
@@ -88,7 +92,7 @@ export default function Appointment(props) {
         <Confirm
           message="Are you sure you want to cancel this appointment?"
           onConfirm={deleteAppointment}
-          onCancel={() => back()}
+          onCancel={()=> back()}
         />
        )}
     
@@ -107,14 +111,14 @@ export default function Appointment(props) {
       {mode === ERROR_SAVE && (
         <Error
           message="Your request to save this could not be completed. Please try again!"
-          onClose={() => back()}
+          onClose={back}
         />
       )}
 
       {mode === ERROR_DELETE && (
         <Error
           message="Your request to delete this could not be completed. Please try again!"
-          onClose={() => back()}
+          onClose={()=> back()}
         />
       )}
     </article>
