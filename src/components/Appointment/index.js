@@ -108,19 +108,19 @@ export default function Appointment(props) {
 
       {/* This is the error handling modes */}
 
-      {mode === ERROR_SAVE && (
+      {mode === ERROR_SAVE && 
         <Error
           message="Your request to save this could not be completed. Please try again!"
           onClose={back}
         />
-      )}
+      }
 
-      {mode === ERROR_DELETE && (
+      {mode === ERROR_DELETE && 
         <Error
           message="Your request to delete this could not be completed. Please try again!"
-          onClose={()=> back()}
+          onClose={back}
         />
-      )}
+      }
     </article>
   );
 }
