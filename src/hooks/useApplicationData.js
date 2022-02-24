@@ -13,28 +13,13 @@ const useApplicationData = function() {
 
     //updates the state with the new day 
     const setDay = day => setState(prev => ({ ...prev, day }));
-
-    //update spots with
-    const updateSpots = function (add, remove) {
-      const updateDay = state.days.find((day) => day.name === state.day);
-      const days = [...state.days];
-  
-      if (remove) {
-        updateDay.spots++;
-      } else if (add) {
-        updateDay.spots--;
-      }
-  
-      days[updateDay.id - 1] = updateDay;
-      return days;
-    };
-
+    
     // effect to make a GET request to update the days state with response---- renders data for the days (sidebar)
     useEffect(() => {
       Promise.all([
-        Promise.resolve(axios.get('/api/days')),
-        Promise.resolve(axios.get('/api/appointments')),
-        Promise.resolve(axios.get('/api/interviewers'))
+        axios.get('/api/days'),
+        axios.get('/api/appointments'),
+        axios.get('/api/interviewers')
       ])
       .then((all) => {
         setState(prev => (
@@ -49,9 +34,27 @@ const useApplicationData = function() {
       .catch (err => console.log("This is the error:", err));
             
     }, []);
+
+
     
+    //update spots with
+    const updateSpots = function (add, cancel) {
+      const updateDay = state.days.find((day) => day.name === state.day);
+      const days = [...state.days];
+  
+      if (cancel) {
+        updateDay.spots++;
+      } else if (add) {
+        updateDay.spots--;
+      }
+  
+      days[updateDay.id - 1] = updateDay;
+      return days;
+    };
 
-
+    
+    
+    
     // function taht allows us to create (and save) an interview appt 
     function bookInterview(id, interview) {
       const add = !state.appointments[id].interview;
@@ -70,7 +73,7 @@ const useApplicationData = function() {
   
       return (axios.put(`api/appointments/${id}`, appointment)
       .then( () => setState({ ...state, appointments, days: updateSpots(add) }))
-      .catch((err) => console.log("This is an error:", err))
+      //.catch((err) => console.log("This is an error1:", err))
   
     )};
 
@@ -88,7 +91,10 @@ const useApplicationData = function() {
     
       return (axios.delete(`api/appointments/${id}`, appointment)
       .then( () => setState( {...state, appointments, days: updateSpots(null, true)}))
-      .catch((error) => console.log("This is an error:", error))
+      // .catch((error) => {
+      //   console.log("This is an error2:", error)
+      //   throw error;
+      // })
      )
   };
 
