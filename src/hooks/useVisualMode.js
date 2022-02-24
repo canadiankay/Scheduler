@@ -18,9 +18,9 @@ export default function useVisualMode(initial) {
   // function that allows user to go back to the previous history but not their first one
   //This means that our history array will always need to have a length that is greater than or equal to 1
   const back = function() {
-    if (history[history.length-1] !== initial) {
+    if (history[history.length - 1] !== initial) {
       history.pop();
-      setMode(() => history[history.length-1]);
+      setMode(() => history[(history.length - 1)]);
     }
   };
   return {mode, transition, back}

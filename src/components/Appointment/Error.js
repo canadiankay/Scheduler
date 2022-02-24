@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles.scss"
 
 // when things fail, show user an error message AND have a close button at the top that allows them to close it
 export default function Error(props) {

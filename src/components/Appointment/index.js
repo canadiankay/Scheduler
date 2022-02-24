@@ -39,24 +39,24 @@ export default function Appointment(props) {
   
     
   function save(student, interviewer) {
-    transition (SAVING);
-    
+
     const interview = {
       student,
       interviewer
     };
+    transition (SAVING);
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW)) 
-    .catch((error) => transition(ERROR_SAVE, true));
+    .catch(() => transition(ERROR_SAVE, true));
   };
 
   //delete appt 
   function deleteAppointment() {
-    transition(DELETING);
+    transition(DELETING, true);
     //this sends the request to the database to delete then takes user to empty when request is successful
     props.cancelInterview(props.id)
     .then(() => transition(EMPTY))
-    .catch( (error) => transition(ERROR_DELETE, true) );
+    .catch(() => transition(ERROR_DELETE, true));
   }
 
   return (
@@ -108,19 +108,19 @@ export default function Appointment(props) {
 
       {/* This is the error handling modes */}
 
-      {mode === ERROR_SAVE && 
+      {mode === ERROR_SAVE && (
         <Error
           message="Your request to save this could not be completed. Please try again!"
-          onClose={back}
+          onClose={()=> back()}
         />
-      }
+      )}
 
-      {mode === ERROR_DELETE && 
+      {mode === ERROR_DELETE && (
         <Error
           message="Your request to delete this could not be completed. Please try again!"
-          onClose={back}
+          onClose={()=> back()}
         />
-      }
+      )}
     </article>
   );
 }

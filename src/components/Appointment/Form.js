@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Button from "components/Button.js";
 import InterviewerList from "components/InterviewerList.js";
 
@@ -31,7 +31,7 @@ export default function Form(props) {
   function validate() {
     // check if user has entered a name
     if (student === "") {
-      setError("Student name cannot be blank");
+      setError("Please enter a student name. This field cannot be blank");
       return;
     }
 
@@ -42,7 +42,7 @@ export default function Form(props) {
     }
     setError("");
     props.onSave(student, interviewer);
-    console.log({student, interviewer});
+    //console.log({student, interviewer});
   }
 
 
@@ -51,14 +51,14 @@ export default function Form(props) {
 
     {/* THIS IS THE PART THAT CREATES AN EXISTING APPT */}
     <section className="appointment__card-left">
-      <form onSubmit={event => event.preventDefault()} autoComplete="off">
+      <form onSubmit={e => e.preventDefault()} autoComplete="off">
         <input
           className="appointment__create-input text--semi-bold"
           student="student"
           type="text"
           placeholder="Enter Student Name"
           value={student}
-          onChange={e =>setStudent(e.target.value)}
+          onChange={e => setStudent(e.target.value)}
           data-testid="student-name-input"
 
         />
@@ -83,6 +83,6 @@ export default function Form(props) {
         </section>
       </section>
     </main>
-  );
+  )
 }
 
